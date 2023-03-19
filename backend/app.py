@@ -5,24 +5,27 @@ import os
 
 openai.api_key = os.environ["OPENAI_API_KEY"]
 
+allmessages = [{"role": "system", "content": "あなたは私のフレンドリーな友達です。軽い口調で会話します。"},]
+
 app = Flask(__name__)
-CORS(app, supports_credentials=True)
+CORS(app)
 
 @app.route('/api/chat', methods=['POST'])
 def chat():
+    global allmessages
     data = request.get_json()
     user_message = data['message']
+
+    allmessages.append({"role": "user", "content": user_message},)
     
     # ChatGPT APIにリクエストを送信
     response = openai.ChatCompletion.create(
         model="gpt-3.5-turbo",
-        messages=[
-            {"role": "system", "content": "あなたは私のフレンドリーな友達です。軽い口調で会話します。"},
-            {"role": "user", "content": f"{user_message}"},
-        ]
+        messages=allmessages
     )
 
     ai_message = response.choices[0]["message"]["content"].strip()
+    allmessages.append({"role": "system", "content": ai_message},)
     return jsonify({"message": ai_message})
     
 
