@@ -130,7 +130,7 @@ export default {
       // ChatGPT APIにリクエストを送信
       try {//webでログを見るためにtry-catchを使用している
         // eslint-disable-next-line
-        const response = axios.post('http://127.0.0.1:5000/api/chat', {
+        const response = axios.post('https://chattoon.onrender.com', {
           message: this.message
         },
           { headers: { 'Content-Type': 'application/json' } },
