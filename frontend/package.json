@@ -1,4 +1,5 @@
 {
+  "homepage": "https://oshiro09.github.io/Chattoon",
   "name": "chattoon",
   "version": "0.1.0",
   "private": true,
@@ -47,7 +48,4 @@
     "not dead",
     "not ie 11"
   ]
-},
-  "homepage":{
-    https://oshiro09.github.io/Chattoon"
-  }
+}
