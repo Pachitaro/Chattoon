@@ -10,6 +10,10 @@ allmessages = [{"role": "system", "content": "あなたは私のフレンドリ�
 app = Flask(__name__)
 CORS(app)
 
+@app.route('/api/chat', methods=['OPTIONS'])
+def handle_options():
+    return '', 200
+
 @app.route('/api/chat', methods=['POST'])
 def chat():
     global allmessages
